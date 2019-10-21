@@ -27,10 +27,13 @@ class SecurityController extends FOSRestController
         if (empty($data['redirect-uri']) || empty($data['grant-type'])) {
             return $this->handleView($this->view($data));
         }
+        if (!is_array($data['grant-type'])) {
+            return $this->handleView($this->view('grant-type should be an array'));
+        }
         $clientManager = $this->client_manager;
         $client = $clientManager->createClient();
         $client->setRedirectUris([$data['redirect-uri']]);
-        $client->setAllowedGrantTypes([$data['grant-type']]);
+        $client->setAllowedGrantTypes($data['grant-type']);
         $clientManager->updateClient($client);
         $rows = [
             'client_id' => $client->getPublicId(), 'client_secret' => $client->getSecret()
