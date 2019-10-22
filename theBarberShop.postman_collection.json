@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "2d4e0f9f-7022-4cbf-b630-376650a7fc7c",
+		"name": "theBarberShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "38b326ec-4a13-4a18-bb83-7c33356800ec",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"token\", jsonData.access_token);",
+							"pm.globals.set(\"refresh_token\", jsonData.refresh_token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"username\":\"thallesdomician\",\n\"password\":\"password\",\n\"grant_type\":\"password\",\n\"client_id\":\"{{client_id}}\",\n\"client_secret\":\"{{client_secret}}\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/oauth/v2/token",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"oauth",
+						"v2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createClient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dc3244ca-3afc-4f10-af02-1966a235f21a",
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"pm.globals.set(\"client_id\", jsonData.client_id);",
+							"pm.globals.set(\"client_secret\", jsonData.client_secret);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"redirect-uri\":\"{{url}}\",\n\t\"grant-type\":[\"password\", \"refresh_token\"]\n}"
+				},
+				"url": {
+					"raw": "{{url}}/createClient",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createClient"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barber-shop list",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ZTk4MTljNDc2MTI4YTJmYmZjMGY4ZWY1MWFkZjg2NGIxYTQ4MzBiZDdjNDYyMDgzNzkyNWFmYTgzM2M4MmQwNw",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/barber-shop",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"barber-shop"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
