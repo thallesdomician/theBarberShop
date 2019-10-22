@@ -41,6 +41,18 @@ class Address
      */
     private $cep;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\City")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $city;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\UF")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $uf;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +114,30 @@ class Address
     public function setCep(string $cep): self
     {
         $this->cep = $cep;
+
+        return $this;
+    }
+
+    public function getCity(): ?City
+    {
+        return $this->city;
+    }
+
+    public function setCity(?City $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getUf(): ?UF
+    {
+        return $this->uf;
+    }
+
+    public function setUf(?UF $uf): self
+    {
+        $this->uf = $uf;
 
         return $this;
     }

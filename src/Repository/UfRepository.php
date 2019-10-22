@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\UF;
+use App\Entity\Uf;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method UF|null find($id, $lockMode = null, $lockVersion = null)
- * @method UF|null findOneBy(array $criteria, array $orderBy = null)
- * @method UF[]    findAll()
- * @method UF[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Uf|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Uf|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Uf[]    findAll()
+ * @method Uf[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UFRepository extends ServiceEntityRepository
+class UfRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UF::class);
+        parent::__construct($registry, Uf::class);
     }
 
     // /**
-    //  * @return UF[] Returns an array of UF objects
+    //  * @return Uf[] Returns an array of Uf objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class UFRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?UF
+    public function findOneBySomeField($value): ?Uf
     {
         return $this->createQueryBuilder('u')
             ->andWhere('u.exampleField = :val')
