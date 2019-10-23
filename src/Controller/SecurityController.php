@@ -16,7 +16,7 @@ class SecurityController extends FOSRestController
     }
     /**
      * Create Client.
-     * @FOSRest\Post("/createClient")
+     * @FOSRest\Post("/create-client")
      *
      * @return Response
      */
