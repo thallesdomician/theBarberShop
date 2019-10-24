@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Barber;
 
 use App\Entity\Barber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\User;
+use App\Form\User\UserUpdateType;
 
-class BarberType extends AbstractType
+class BarberUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', UserType::class)
+            ->add('user', UserUpdateType::class)
         ;
     }
 
@@ -22,5 +22,10 @@ class BarberType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Barber::class,
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'barber';
     }
 }

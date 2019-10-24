@@ -8,12 +8,12 @@ use FOS\RestBundle\Controller\Annotations as FOSRest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Barber;
-use App\Form\BarberType;
+use App\Form\Barber\BarberCreateType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Undocumented class
- * @Route("/api/barber", name="barber")
+ * @Route("/barber", name="barber")
  */
 class BarberController extends FOSRestController
 {
@@ -23,7 +23,7 @@ class BarberController extends FOSRestController
     public function create(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $barber = new Barber();
-        $form = $this->createForm(BarberType::class, $barber);
+        $form = $this->createForm(BarberCreateType::class, $barber);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -35,9 +35,9 @@ class BarberController extends FOSRestController
             $entityManager->persist($barber);
             $entityManager->flush();
     
-            return $this->handleView($this->view($form, Response::HTTP_CREATED));
+            return $this->handleView($this->view($barber, Response::HTTP_CREATED));
         }
         
-        return $this->handleView($this->view($form->createView(), Response::HTTP_BAD_REQUEST));
+        return $this->handleView($this->view($form, Response::HTTP_BAD_REQUEST));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\User;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
@@ -11,15 +11,12 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
-class UserType extends AbstractType
+class UserUpdateType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('username', TextType::class)
-            ->add('password', RepeatedType::class)
         ;
     }
 
@@ -28,5 +25,10 @@ class UserType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
+    }
+
+    public function getBlockPrefix()
+    {
+        return 'user';
     }
 }
