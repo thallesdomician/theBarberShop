@@ -7,20 +7,18 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as FOSRest;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Undocumented class
- * @Route("/api/barber-shop", name="barber_shop")
+ * @Route("/api/user", name="user")
  */
-class BarberShopController extends FOSRestController
+class UserController extends FOSRestController
 {
     /**
-     * @FOSRest\Get("", name="get_all")
-     * @Security("has_role('ROLE_BARBER')")
+     * @FOSRest\Get("/profile", name="get_profile")
      */
     public function index(Request $request)
     {
-        return $this->handleView($this->view('sucess!'));
+        return $this->handleView($this->view($this->getUser()));
     }
 }

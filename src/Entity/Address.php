@@ -48,7 +48,7 @@ class Address
     private $city;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\UF")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Uf")
      * @ORM\JoinColumn(nullable=false)
      */
     private $uf;

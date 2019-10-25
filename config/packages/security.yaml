@@ -30,9 +30,8 @@ security:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
             anonymous: true
 
     access_control:
+        - { path: ^/create-client, roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
         - { path: ^/api, roles: [IS_AUTHENTICATED_FULLY] }
-        - { path: ^/createClient, roles: [IS_AUTHENTICATED_ANONYMOUSLY] }

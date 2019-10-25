@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2d4e0f9f-7022-4cbf-b630-376650a7fc7c",
+		"_postman_id": "3cb80ead-146f-4b1f-bdff-bc217a26c6c7",
 		"name": "theBarberShop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -34,7 +34,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"username\":\"thallesdomician\",\n\"password\":\"password\",\n\"grant_type\":\"password\",\n\"client_id\":\"{{client_id}}\",\n\"client_secret\":\"{{client_secret}}\"\n}"
+					"raw": "{\n\"username\":\"barber773\",\n\"password\":\"123456\",\n\"grant_type\":\"password\",\n\"client_id\":\"{{client_id}}\",\n\"client_secret\":\"{{client_secret}}\"\n}"
 				},
 				"url": {
 					"raw": "{{url}}/oauth/v2/token",
@@ -117,22 +117,128 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "{{url}}/api/barber-shop",
+					"raw": "{{url}}/api/user/profile",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"api",
-						"barber-shop"
+						"user",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barber create",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "ZTk4MTljNDc2MTI4YTJmYmZjMGY4ZWY1MWFkZjg2NGIxYTQ4MzBiZDdjNDYyMDgzNzkyNWFmYTgzM2M4MmQwNw",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"barber\": {\n        \"user\": {\n            \"name\": \"barber {{$randomInt}}\",\n            \"email\": \"barber{{$randomInt}}@gmail.com\",\n            \"username\": \"barber{{$randomInt}}\",\n            \"password\": {\n                \"first\": \"123456\",\n                \"second\": \"123456\"\n            }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/barber",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"barber"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "barber update",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{token}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "bearer",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"barber\": {\n        \"user\": {\n            \"name\": \"barber {{$randomInt}}\"\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/barber/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"barber",
+						"2"
 					]
 				}
 			},
 			"response": []
 		}
-	]
+	],
+	"protocolProfileBehavior": {}
 }
