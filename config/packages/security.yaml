@@ -25,7 +25,7 @@ security:
             pattern: ^/api
             fos_oauth: true
             stateless: true
-            anonymous: false
+            anonymous: true
         main:
             pattern: ^/
             form_login:
@@ -34,4 +34,5 @@ security:
 
     access_control:
         - { path: ^/create-client, roles: [IS_AUTHENTICATED_ANONYMOUSLY] }
+        - { path: ^/api/user$, roles: [IS_AUTHENTICATED_ANONYMOUSLY],  methods: [POST] }
         - { path: ^/api, roles: [IS_AUTHENTICATED_FULLY] }

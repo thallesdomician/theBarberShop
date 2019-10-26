@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -11,13 +11,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Undocumented class
- * @Route("/api/barber-shop", name="barber_shop")
+ * @Route("/api/barber-shop", name="barber_shop_")
  */
 class BarberShopController extends FOSRestController
 {
     /**
      * @FOSRest\Get("", name="get_all")
-     * @Security("has_role('ROLE_BARBER')")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function index(Request $request)
     {

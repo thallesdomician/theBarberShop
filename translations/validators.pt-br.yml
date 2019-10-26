@@ -1,0 +1,5 @@
+doctrine.assert.unique: O valor {{ value }} já está sendo usado.
+assert.not_blank: Este campo não pode estar em branco.
+assert.email: Este campo deve ser um email válido.
+assert.lenght.max: Este campo deve conter no máximo {{ limit }} caracteres.
+assert.lenght.min: Este campo deve conter no mínimo {{ limit }} caracteres.

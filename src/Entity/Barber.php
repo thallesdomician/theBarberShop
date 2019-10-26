@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BarberRepository")
@@ -31,6 +32,15 @@ class Barber
      * @ORM\ManyToOne(targetEntity="App\Entity\BarberShop", inversedBy="barbers")
      */
     private $barberShop;
+
+    /**
+     * @ORM\Column(type="string", length=75, nullable=true)
+     * @Assert\Length(
+     *      min = 0,
+     *      max = 75
+     * )
+     */
+    private $displayName;
 
     public function getId(): ?int
     {
@@ -69,6 +79,18 @@ class Barber
     public function setBarberShop(?BarberShop $barberShop): self
     {
         $this->barberShop = $barberShop;
+
+        return $this;
+    }
+
+    public function getDisplayName(): ?string
+    {
+        return $this->display_name;
+    }
+
+    public function setDisplayName(?string $display_name): self
+    {
+        $this->display_name = $display_name;
 
         return $this;
     }
